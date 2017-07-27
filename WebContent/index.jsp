@@ -180,10 +180,18 @@
 				<tfoot>
 					<tr>
 						<td colspan="4"><span> 当前第 ${emps.currentPage} 页 / 总共
-								${emps.totalPages} 页 </span> <a href="queryEmpList?currPage=1">首页</a> <a
-							href="queryEmpList?currPage=${emps.currentPage-1}">上一页</a> <a
-							href="queryEmpList?currPage=${emps.currentPage+1}">下一页</a> <a
-							href="queryEmpList?currPage=${emps.totalPages}">尾页</a></td>
+								${emps.totalPages} 页 </span> 
+								<c:if test="${emps.currentPage>1}">
+								<a href="queryEmpList?currPage=1">首页</a>
+								<a href="queryEmpList?currPage=${emps.currentPage-1}">上一页</a>
+								</c:if>
+								<c:choose>
+								<c:when test="${emps.currentPage<emps.totalPages}">
+								<a href="queryEmpList?currPage=${emps.currentPage+1}">下一页</a>
+								<a href="queryEmpList?currPage=${emps.totalPages}">尾页</a>
+								</c:when>
+								</c:choose>
+						</td>
 					</tr>
 				</tfoot>
 			</table>
