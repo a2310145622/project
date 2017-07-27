@@ -1,10 +1,10 @@
 /**
  * 
  */
-package cn.raoxianhua.demo;
+package cn.raoxianhua.common.utils;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * 2017年7月25日
  * @author BKF
  */
-@WebServlet("/cookiedemo")
-public class CookieDemoServlet extends HttpServlet {
+@WebServlet("/readcookie")
+public class ReadCookieServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -29,13 +29,13 @@ public class CookieDemoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		String uname = req.getParameter("uname");
-		Cookie cookie = new Cookie("uname", uname);
-		cookie.setMaxAge(60 * 60 * 24 * 365);
-		
-		resp.addCookie(cookie);
-		PrintWriter out = resp.getWriter();
-		out.print("Hello Cookie");
+
+		Cookie[] cs = req.getCookies();
+		for(Cookie c : cs) {
+			System.out.println( c.getName() + ":" + URLDecoder.decode(c.getValue(), "utf-8"));
+		}
+	
 	}
+	
+	
 }

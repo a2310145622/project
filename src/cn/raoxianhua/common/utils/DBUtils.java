@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.raoxianhua.demo;
+package cn.raoxianhua.common.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,8 +29,12 @@ public class DBUtils {
 	
 	// Oracle Database 11.2.0.4.0
 //	private static final String URL = "jdbc:oracle:thin:@119.28.128.29:1521:orcl";
+	
 	private static final String USER = "dev";
 	private static final String PWD = "dev";
+	
+//	private static final String USER = "scott";
+//	private static final String PWD = "Aa773616773616";
 	private static Connection conn;
 	
 	static {
@@ -164,6 +168,37 @@ public class DBUtils {
 		return result;
 	}
 
+	/**
+	 * 通用单值查询
+	 * @param sql
+	 * @return
+	 */
+	public static Object querySingleData(String sql, Object... params) {
+		
+		conn = getConnection();
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		Object result = null;
+		try {
+			// 对传递的SQL进行预编译
+			ps = conn.prepareStatement(sql);
+			// 动态绑定参数
+			for(int i = 0; i < params.length; i++) {
+				ps.setObject(i+1, params[i]);
+			}
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				result = rs.getObject(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, ps, rs);
+		}
+		return result;
+	}
+	
 	private static void close(Connection conn, Statement st, ResultSet rs) {
 		if(rs != null) {
 			try {
