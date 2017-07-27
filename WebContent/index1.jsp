@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>欢迎访问主页</title>
+<title>欢迎访问饶显华的主页</title>
 </head>
 <body>
 <%=session.getAttribute("uname_in_session") %>
