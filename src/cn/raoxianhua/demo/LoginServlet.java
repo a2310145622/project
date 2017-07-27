@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("uname_in_session", uname);
 			// 1. 请求重定向
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("home");
 			// 2. 请求转发
 //			RequestDispatcher dispatcher = ç.getRequestDispatcher("index.html");
 //			dispatcher.forward(request, response);
@@ -98,7 +98,7 @@ public class LoginServlet extends HttpServlet {
 		if( user.size() > 0 ) {
 			msg = "登陆成功!";
 			// 1. 请求重定向
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("home");
 			// 2. 请求转发
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 //			dispatcher.forward(request, response);

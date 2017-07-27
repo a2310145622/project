@@ -1,31 +1,8 @@
-<%@page import="java.net.URLDecoder"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	Cookie[] cookies = request.getCookies();
-	String uname = null;
-	String pwd = null;
-	if (session.getAttribute("uname_in_session") == null) {
-		if (cookies != null) {
-			for (int i = 0; i < cookies.length; i++) {
-				String name = cookies[i].getName();
-				String pw = cookies[i].getName();
-				if ("uname".equals(name)) {
-					//如果是中文，cookies需要解码
-					uname = URLDecoder.decode(cookies[i].getValue(), "utf-8");
-				} else if ("pwd".equals(pw)) {
-					pwd = cookies[i].getValue();
-				}
-			}
-		}
-		//当用户名和密码不为空时，自动登录
-		if ((uname != null && !("".equals(uname))) && (pwd != null && !("".equals(pwd)))) {
-			session.setAttribute("uname_in_session", uname);
-			session.setAttribute("pwd_in_session", pwd);
-			response.sendRedirect("login");//get请求
-		}
-	}
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -98,16 +75,17 @@
 				%>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("uname_in_session")%><span class="caret"></span></a>
+					aria-expanded="false"><%=session.getAttribute("uname_in_session")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">设置</a></li>
 						<li><a href="deletecookie">退出</a></li>
 					</ul></li>
-<%-- 				<li><a><%=session.getAttribute("uname_in_session")%></a></li> --%>
-<!-- 				<li class="active"><a href="deletecookie">退出 <span -->
-<!-- 						class="sr-only">(current)</span></a></li> -->
+				<%-- 				<li><a><%=session.getAttribute("uname_in_session")%></a></li> --%>
+				<!-- 				<li class="active"><a href="deletecookie">退出 <span -->
+				<!-- 						class="sr-only">(current)</span></a></li> -->
 				<%
-					}else{
+					} else {
 				%>
 				<li><a href="login.jsp">登录</a></li>
 				<%
@@ -139,32 +117,29 @@
 
 	</div>
 	<!-- /container -->
+	
+	<%List<Map<String, Object>> users = (List<Map<String, Object>>)request.getAttribute("userList"); %>
 	<div class="container">
 		<div class="jumbotron">
 			<p>To see the difference between static and fixed top navbars,
 				just scroll.</p>
 			<table class="table table-hover">
-				<tr>
-					<td class="active">...</td>
-					<td class="success">...</td>
-					<td class="warning">...</td>
-					<td class="danger">...</td>
-					<td class="info">...</td>
-				</tr>
-				<tr>
-					<td class="active">...</td>
-					<td class="success">...</td>
-					<td class="warning">...</td>
-					<td class="danger">...</td>
-					<td class="info">...</td>
-				</tr>
-				<tr>
-					<td class="active">...</td>
-					<td class="success">...</td>
-					<td class="warning">...</td>
-					<td class="danger">...</td>
-					<td class="info">...</td>
-				</tr>
+				<thead>
+					<tr>
+						<td class="active">UNAME</td>
+						<td class="success">PWD</td>
+						<td class="warning">AGE</td>
+					</tr>
+				</thead>
+				<tbody>
+					<%for(int i=0;i<users.size();i++){%>
+					<tr>
+						<td class="active"><a href="index.html"><%=users.get(i).get("UNAME")%></a></td>
+						<td class="success"><%=users.get(i).get("PWD")%></td>
+						<td class="warning"><%=users.get(i).get("AGE")%></td>
+					</tr>
+					<%}%>
+				</tbody>
 			</table>
 		</div>
 
