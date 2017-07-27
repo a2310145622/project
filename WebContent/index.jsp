@@ -2,6 +2,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
@@ -117,8 +118,10 @@
 
 	</div>
 	<!-- /container -->
-	
-	<%List<Map<String, Object>> users = (List<Map<String, Object>>)request.getAttribute("userList"); %>
+
+	<%
+		List<Map<String, Object>> users = (List<Map<String, Object>>) request.getAttribute("userList");
+	%>
 	<div class="container">
 		<div class="jumbotron">
 			<p>To see the difference between static and fixed top navbars,
@@ -129,16 +132,25 @@
 						<td class="active">UNAME</td>
 						<td class="success">PWD</td>
 						<td class="warning">AGE</td>
+						<td class="danger">操作</a></td>
 					</tr>
 				</thead>
 				<tbody>
-					<%for(int i=0;i<users.size();i++){%>
-					<tr>
-						<td class="active"><a href="index.html"><%=users.get(i).get("UNAME")%></a></td>
-						<td class="success"><%=users.get(i).get("PWD")%></td>
-						<td class="warning"><%=users.get(i).get("AGE")%></td>
-					</tr>
-					<%}%>
+					<c:forEach items="${requestScope.userList}" var="e">
+						<tr>
+							<td class="active">${e.UNAME}</td>
+							<td class="success">${e.PWD}</td>
+							<td class="warning">${e.AGE}</td>
+							<td class="danger"><a href="index.html">查看</a></td>
+						</tr>
+					</c:forEach>
+<%-- 					<%for (int i = 0; i < users.size(); i++) {%> --%>
+<!-- 					<tr> -->
+<%-- 						<td class="active"><a href="index.html"><%=users.get(i).get("UNAME")%></a></td> --%>
+<%-- 						<td class="success"><%=users.get(i).get("PWD")%></td> --%>
+<%-- 						<td class="warning"><%=users.get(i).get("AGE")%></td> --%>
+<!-- 					</tr> -->
+<%-- 					<%}%> --%>
 				</tbody>
 			</table>
 		</div>
