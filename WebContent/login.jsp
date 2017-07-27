@@ -1,27 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.net.URLDecoder"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.net.URLDecoder"%>
 <%
-   Cookie[] cookies=request.getCookies();
-   String uname = null;
-   String pwd = null;
-   if(cookies!=null){
-           for(int i=0;i<cookies.length;i++){
-               String name = cookies[i].getName();
-               String pw = cookies[i].getName();
-               if("uname".equals(name)){
-            	   //如果是中文，cookies需要解码
-            	   uname = URLDecoder.decode(cookies[i].getValue(), "utf-8");
-               }else if("pwd".equals(pw)){
-            	   pwd = cookies[i].getValue();
-               }
-           }
-   }
-   //当用户名和密码不为空时，自动登录
-   if((uname!=null&&!("".equals(uname)))&&(pwd!=null&&!("".equals(pwd)))){
-           session.setAttribute("uname_in_session", uname);
-           session.setAttribute("pwd_in_session", pwd);
-           response.sendRedirect("login");//get请求
-   }
- %>
+	Cookie[] cookies = request.getCookies();
+	String uname = null;
+	String pwd = null;
+	if (session.getAttribute("uname_in_session") == null) {
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				String name = cookies[i].getName();
+				String pw = cookies[i].getName();
+				if ("uname".equals(name)) {
+					//如果是中文，cookies需要解码
+					uname = URLDecoder.decode(cookies[i].getValue(), "utf-8");
+				} else if ("pwd".equals(pw)) {
+					pwd = cookies[i].getValue();
+				}
+			}
+		}
+		//当用户名和密码不为空时，自动登录
+		if ((uname != null && !("".equals(uname))) && (pwd != null && !("".equals(pwd)))) {
+			session.setAttribute("uname_in_session", uname);
+			session.setAttribute("pwd_in_session", pwd);
+			response.sendRedirect("login");//get请求
+		}
+	}
+	else
+		response.sendRedirect("index.jsp");//get请求
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -74,21 +79,23 @@
 
 	<div class="container">
 
-      <form class="form-signin" action="login" method="post">
-        <h2 class="form-signin-heading">请登录</h2>
-        <label for="inputuname" class="sr-only">user name</label>
-        <input type="text" id="inputuname" name="uname" class="form-control" placeholder="用户名" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="密码" required="">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="rme" value="rme">记住我
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-      </form>
+		<form class="form-signin" action="login" method="post">
+			<h2 class="form-signin-heading">请登录</h2>
+			<label for="inputuname" class="sr-only">user name</label> <input
+				type="text" id="inputuname" name="uname" class="form-control"
+				placeholder="用户名" required="" autofocus=""> <label
+				for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="inputPassword" name="pwd" class="form-control"
+				placeholder="密码" required="">
+			<div class="checkbox">
+				<label> <input type="checkbox" name="rme" value="rme">记住我
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+		</form>
 
-    </div> <!-- /container -->
+	</div>
+	<!-- /container -->
 
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

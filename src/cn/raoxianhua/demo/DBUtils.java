@@ -19,7 +19,7 @@ import oracle.jdbc.OracleDriver;
 
 /**
  * DESC: 
- * 2017Äê7ÔÂ21ÈÕ
+ * 2017å¹´7æœˆ21æ—¥
  * @author BKF
  */
 public class DBUtils {
@@ -35,20 +35,20 @@ public class DBUtils {
 	
 	static {
 		try {
-			// 1. Çı¶¯ÀàµÄ¼ÓÔØ
+			// 1. é©±åŠ¨ç±»çš„åŠ è½½
 			DriverManager.registerDriver(new OracleDriver());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	/**
-	 * »ñÈ¡µ½ÌØ¶¨Êı¾İ¿âµÄÁ´½Ó¶ÔÏó
+	 * è·å–åˆ°ç‰¹å®šæ•°æ®åº“çš„é“¾æ¥å¯¹è±¡
 	 * @return java.sql.Connection
 	 */
 	public static Connection getConnection() {
 		try {
 			if(conn == null || conn.isClosed()) {
-				// 2. »ñÈ¡Á´½Ó
+				// 2. è·å–é“¾æ¥
 				conn = DriverManager.getConnection(URL, USER, PWD);
 			}
 		} catch (SQLException e) {
@@ -58,9 +58,9 @@ public class DBUtils {
 	}
 
 	/**
-	 * Ö´ĞĞDMLÓï¾ä
+	 * æ‰§è¡ŒDMLè¯­å¥
 	 * @param sql
-	 * @return DMLÓï¾äÔÚÊı¾İ¿âÖĞÓ°ÏìµÄĞĞÊı
+	 * @return DMLè¯­å¥åœ¨æ•°æ®åº“ä¸­å½±å“çš„è¡Œæ•°
 	 */
 	public static int modify(String sql, Object...params) {
 		
@@ -85,9 +85,9 @@ public class DBUtils {
 	}
 
 	/**
-	 * Í¨ÓÃµÄ²éÑ¯·½·¨
+	 * é€šç”¨çš„æŸ¥è¯¢æ–¹æ³•
 	 * @param sql
-	 * @return ½á¹û¼¯
+	 * @return ç»“æœé›†
 	 */
 	public static List<Map<String, Object>> query(String sql, Object... params) {
 		
@@ -125,7 +125,7 @@ public class DBUtils {
 	}
 
 	/**
-	 * Í¨ÓÃµ¥ĞĞ²éÑ¯
+	 * é€šç”¨å•è¡ŒæŸ¥è¯¢
 	 * @param sql
 	 * @return
 	 */
@@ -139,9 +139,9 @@ public class DBUtils {
 		Map<String, Object> result = new HashMap<>();
 		try {
 //			st = conn.createStatement();
-			// ¶Ô´«µİµÄSQL½øĞĞÔ¤±àÒë
+			// å¯¹ä¼ é€’çš„SQLè¿›è¡Œé¢„ç¼–è¯‘
 			ps = conn.prepareStatement(sql);
-			// ¶¯Ì¬°ó¶¨²ÎÊı
+			// åŠ¨æ€ç»‘å®šå‚æ•°
 			for(int i = 0; i < params.length; i++) {
 				ps.setObject(i+1, params[i]);
 			}
