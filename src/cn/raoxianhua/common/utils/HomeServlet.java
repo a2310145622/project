@@ -60,7 +60,7 @@ public class HomeServlet extends HttpServlet {
 		String sql = "SELECT * FROM T_USER";
 		List<Map<String, Object>> users = DBUtils.query(sql);
 		req.setAttribute("userList", users);
-		req.getRequestDispatcher("index.jsp").forward(req, resp);
+		req.getRequestDispatcher("queryEmpList").forward(req, resp);
 
 	}
 }

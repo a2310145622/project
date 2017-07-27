@@ -45,6 +45,7 @@ public class EmpListServlet extends HttpServlet {
 		CommonPage<Map<String, Object>> emps = dao.queryPage(currentPage);
 		
 		req.setAttribute("emps", emps);
-		req.getRequestDispatcher("emps.jsp").forward(req, resp);
+//		req.getRequestDispatcher("emps.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 }
