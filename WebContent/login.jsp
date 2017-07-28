@@ -79,7 +79,7 @@
 
 	<div class="container">
 
-		<form class="form-signin" action="login" method="post">
+		<form class="form-signin" action="../login/login" method="post">
 			<h2 class="form-signin-heading">请登录</h2>
 			<label for="inputuname" class="sr-only">user name</label> <input
 				type="text" id="inputuname" name="uname" class="form-control"
