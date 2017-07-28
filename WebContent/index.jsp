@@ -13,7 +13,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="./image/favicon.ico">
+<link rel="icon" href="../image/favicon.ico">
 
 <title>Fixed Top Navbar Example for Bootstrap</title>
 
@@ -30,11 +30,26 @@
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="./js/ie-emulation-modes-warning.js"></script>
 
+<script src="./js/docs.min.js"></script>
+
+<script src="./js/holder.js"></script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+ <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbdb993b828cbe079a7fbc1a951f44726' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<!-- 全局统计代码 -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F079fac161efc4b2a6f31e80064f14e82' type='text/javascript'%3E%3C/script%3E"));
+</script>   
 </head>
 
 <body>
@@ -118,7 +133,40 @@
 
 	</div>
 	<!-- /container -->
-
+	<div class="container">
+        
+<div class="bs-example" data-example-id="simple-carousel">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img data-src="holder.js/1200x500?fg=FF0000&auto=yes&#777:#555&text=First slide" alt="First slide">
+          <div class="carousel-caption">图片 1</div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/1200x500?random=yes&outline=no&auto=yes&#666:#444&text=second slide" alt="Second slide">
+          <div class="carousel-caption">图片2</div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/1200x500?random=yes&outline=yes&auto=yes&#555:#333&text=Third slide" alt="Third slide">
+          <div class="carousel-caption">图片 3</div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  </div>
 	<%
 		List<Map<String, Object>> users = (List<Map<String, Object>>) request.getAttribute("userList");
 	%>
@@ -207,7 +255,7 @@
 	<script>
 		window.jQuery
 				|| document
-						.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+						.write('<script src="./js/vendor/jquery.min.js"><\/script>')
 	</script>
 	<script src="./js/bootstrap.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

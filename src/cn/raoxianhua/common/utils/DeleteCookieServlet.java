@@ -32,7 +32,7 @@ public class DeleteCookieServlet extends HttpServlet {
 			cookies[i].setMaxAge(0);  
 			resp.addCookie(cookies[i]); 
 		}
-		resp.sendRedirect("login.jsp");
+		resp.sendRedirect("home");
 	}
 
 }
