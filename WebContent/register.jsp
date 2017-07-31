@@ -48,25 +48,54 @@
 </style>
 </head>
 
+<script type="text/javascript">  
+var pwd;
+var cpwd;
+function validate() {  
+    pwd = document.getElementById("inputPassword");
+    cpwd = document.getElementById("confirmPassword");
+    warning = document.getElementById("warning");
+//    window.location.href = 'www.baidu.com';
+    if(pwd.value==cpwd.value)
+    	warning.innerHTML="<font color=green >两次输入密码相同</font>";
+	else
+		warning.innerHTML="<font color=red >两次输入密码不相同</font>";
+}
+
+function clickuname() {
+    //获得表单内容并转发
+    var doc = document.getElementById("document");
+    doc.action = "clickuname";
+    doc.method = "post";
+    doc.submit(); 
+}
+
+//function click1() {
+//    window.location.href = "https://www.baidu.com";
+//}
+</script>  
+
 <body>
 
+<!-- <img src="./image/favicon.ico" onclick="click1()"> -->
 	<div class="container">
 
 		<form class="form-signin" action="register" method="post">
 			<h2 class="form-signin-heading">注册</h2>
 			<label for="inputuserid" class="sr-only">user id</label> 
 			<input type="text" id="inputuserid" name="userid" class="form-control"
-				placeholder="用户id" required="" autofocus="">
+				placeholder="用户id" autofocus="">
 			<label for="inputuname" class="sr-only">user name</label>
 			<input type="text" id="inputuname" name="uname" class="form-control"
-				placeholder="用户名" required="" autofocus=""> 
+				placeholder="用户名" required="" autofocus="" onchange="clickuname"> 
 			<label for="inputPassword" class="sr-only">Password</label>
 			<input type="password" id="inputPassword" name="pwd" class="form-control"
 				placeholder="输入密码" required="">
 			<label for="inputPassword" class="sr-only">Password</label>
 			<input type="password" id="confirmPassword" name="cpwd" class="form-control"
-				placeholder="确认密码" required="">
-				<label for="inputage" class="sr-only">age</label>
+				placeholder="确认密码" required="" onchange="validate()">
+			<span id="warning"></span>
+			<label for="inputage" class="sr-only">age</label>
 			<input type="text" id="inputage" name="age" class="form-control"
 				placeholder="年龄" autofocus="">
 			<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
