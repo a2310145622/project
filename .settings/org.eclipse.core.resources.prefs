@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebContent/login.jsp=UTF-8
+encoding//WebContent/register.jsp=UTF-8
 encoding//src/cn/raoxianhua/common/utils/CookieDemoServlet.java=UTF-8
 encoding//src/cn/raoxianhua/common/utils/LoginServlet.java=UTF-8
 encoding//src/cn/raoxianhua/common/utils/ReadCookieServlet.java=UTF-8
 encoding//src/cn/raoxianhua/common/utils/SessionServletr.java=UTF-8
+encoding//src/cn/raoxianhua/common/utils/registerServlet.java=UTF-8
