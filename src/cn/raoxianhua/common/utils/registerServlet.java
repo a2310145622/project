@@ -45,7 +45,7 @@ public class registerServlet extends HttpServlet {
 		
 		String userid = request.getParameter("userid");
 		String uname = request.getParameter("uname");
-		String pwd = request.getParameter("pwd1");
+		String pwd = request.getParameter("pwd");
 		String age = request.getParameter("age");
 		
 		String sql = "INSERT INTO T_USER (USERID, UNAME, PWD, AGE) VALUES (?, ?, ?, ?)";
